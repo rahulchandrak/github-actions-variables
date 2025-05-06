@@ -24,5 +24,9 @@ jobs:
     - name: checkout the repo
       run: |
         git clone https://github.com/rahulchandrak/github-actions-variables.git
+    - name: check repo using the github actions
+      uses: actions/checkout@v4
+	      
+
 
     
