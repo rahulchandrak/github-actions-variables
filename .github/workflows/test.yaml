@@ -28,6 +28,13 @@ jobs:
       uses: actions/checkout@v4
       with:
         path: main
+    - name: create new files
+      run: |
+        touch test
+        ls -lrt
+        ls -a
+        
+       
 
 
     
