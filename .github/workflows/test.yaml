@@ -23,6 +23,6 @@ jobs:
         free -m
     - name: checkout the repo
       run: |
-        git clone git@github.com:rahulchandrak/github-actions-variables.git
+        git clone https://github.com/rahulchandrak/github-actions-variables.git
 
     
