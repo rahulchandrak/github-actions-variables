@@ -1,0 +1,37 @@
+name: Sparse Checkout Example
+
+on:
+  push
+jobs:
+  sparse-checkout:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        # Sparse checkout options
+        fetch-depth: 0               # Fetch all history for all branches
+        sparse-checkout: true        # Enable sparse checkout
+
+    - name: Set sparse checkout paths
+      run: |
+        git sparse-checkout init --cone
+        git sparse-checkout set folder1/ folder2/
+
+    - name: Perform your actions
+      run: |
+        # Your commands here, e.g., running tests, building, etc.
+        echo "Current directory:"
+        pwd
+        
+        echo "Listing sparse checked out files:"
+        ls -R
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3  # Use v3 for GHES compatibility
+      with:
+        name: my-artifacts
+        path: |
+          folder1/
+          folder2/
