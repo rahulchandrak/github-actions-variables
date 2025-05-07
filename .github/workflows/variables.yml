@@ -1,15 +1,32 @@
-name: Workflow Demo
+name: Variable Precedence Example
 
-on: 
+on:
   push
 
 env:
-  ACCESS_ID: ${{ vars.ACCESS_ID }}
+  MY_VARIABLE: "Workflow Level"  # This is a workflow-level variable
+  wrk_level_key: "workflow level variable"
 
 jobs:
-  build:
+  example:
     runs-on: ubuntu-latest
-
+    env:
+      MY_VARIABLE: "Job Level"  # This is a job-level variable
+      job_level_key: "job level variable"
     steps:
-    - name: echo ACCESS_ID
-      run: echo $ACCESS_ID
+      - name: Step 1
+        run: echo "Step variable value: $MY_VARIABLE"  # Uses job-level MY_VARIABLE
+      
+      - name: Step 2
+        env:
+          MY_VARIABLE: "Step Level"  # This is a step-level variable
+          step_level_key: "step level variable"
+        run: echo "Step variable value: $MY_VARIABLE"  # Uses step-level MY_VARIABLE
+          
+      - name: Step 3
+        run: |
+         echo "Step variable value: $MY_VARIABLE"  # Uses job-level MY_VARIABLE
+         echo "emiting wrkflow level variable $wrk_level_key"
+         echo "emiting job level variable $job_level_key"
+         echo "emiting step level variable $step_level_key"
+      
