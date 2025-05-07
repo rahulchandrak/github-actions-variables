@@ -1,7 +1,7 @@
 name: use env-secret variables
 
 on:
-  push
+  workflow_dispatch
 
 
 
