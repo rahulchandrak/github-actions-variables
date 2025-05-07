@@ -14,14 +14,9 @@ jobs:
       uses: actions/checkout@v4
       with:
         # Sparse checkout options
-        path: main
-        fetch-depth: 0               # Fetch all history for all branches
-        sparse-checkout: true        # Enable sparse checkout
+        path: .
+        
 
-    - name: Set sparse checkout paths
-      run: |
-        git sparse-checkout init --cone
-        git sparse-checkout set folder1/ folder2/
 
     - name: Perform your actions
       run: |
