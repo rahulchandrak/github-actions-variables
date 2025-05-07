@@ -27,6 +27,6 @@ jobs:
         run: |
          echo "Step variable value: $MY_VARIABLE"  # Uses job-level MY_VARIABLE
          echo "emiting wrkflow level variable $wrk_level_key"
-         echo "emiting job level variable $job_level_key"
+         echo "emitting job level variable $job_level_key"
          echo "emiting step level variable $step_level_key"
       
