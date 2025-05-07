@@ -27,10 +27,4 @@ jobs:
         echo "Listing sparse checked out files:"
         ls -R
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3  # Use v3 for GHES compatibility
-      with:
-        name: my-artifacts
-        path: |
-          folder1/
-          folder2/
+    
