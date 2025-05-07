@@ -1,18 +1,25 @@
-name: Matrix Strategy Example
+name: Matrix Include Example
 
 on:
   push:
-    
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10, 12, 14, 16]  # Defining Node.js versions to test
-        os: [ubuntu-latest, windows-latest]  # Defining operating systems to test on
+        node-version: [10, 12, 14]
+        os: [ubuntu-latest]
+      include:
+        - node-version: 16
+          os: ubuntu-latest  # Specifically include this combination
+        - node-version: 14
+          os: macos-latest   # Include a macOS runner for Node.js 14
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
