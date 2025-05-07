@@ -1,0 +1,26 @@
+name: Matrix Strategy Example
+
+on:
+  push:
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10, 12, 14, 16]  # Defining Node.js versions to test
+        os: [ubuntu-latest, windows-latest]  # Defining operating systems to test on
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test

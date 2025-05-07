@@ -6,10 +6,12 @@ on:
       - main
 
 jobs:
-  example:
+  linux:
     runs-on: ubuntu-latest
     timeout-minutes: 1  # Job will time out after 10 minutes
     steps:
       - name: Run a long process
         run: sleep 600  # Simulating a long-running process (600 seconds = 10 minutes)
+
+        
 
