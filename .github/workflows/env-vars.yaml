@@ -1,0 +1,16 @@
+name: use env-secret variables
+
+on:
+  push
+
+
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Step 1
+        run: |
+         echo "value of the variable REPO_LEVEL_VAR is ${{ env.REPO_LEVEL_VAR }}"
+         echo "value of the secret props_pwd var is ${{ secrets.PROPS_PWD }}"
