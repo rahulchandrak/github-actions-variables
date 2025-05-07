@@ -1,20 +1,26 @@
-name: Manual Trigger with Inputs
+name: Workflow Dispatch with Choices
 
 on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'The environment to deploy to'
+        description: 'Select an environment to deploy'
         required: true
         default: 'staging'
-      release_version:
-        description: 'Version number for release'
-        required: true
+        type: choice
+        options:
+          - staging
+          - production
+          - development
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Deploy to the specified environment
-        run: echo "Deploying to ${{ github.event.inputs.environment }} with version ${{ github.event.inputs.release_version }}"
+      - name: Deploy to the selected environment
+        run: |
+          echo "Deploying to ${{ github.event.inputs.environment }} environment."
+
