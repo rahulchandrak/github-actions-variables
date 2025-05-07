@@ -1,16 +1,20 @@
-name: use env-secret variables
+name: Manual Trigger with Inputs
 
 on:
-  workflow_dispatch
-
-
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'The environment to deploy to'
+        required: true
+        default: 'staging'
+      release_version:
+        description: 'Version number for release'
+        required: true
 
 jobs:
-  example:
+  deploy:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Step 1
-        run: |
-         echo "value of the variable REPO_LEVEL_VAR is ${{ vars.REPO_LEVEL_VAR }}"
-         echo "value of the secret props_pwd var is ${{ secrets.PROPS_PWD }}"
+
+      - name: Deploy to the specified environment
+        run: echo "Deploying to ${{ github.event.inputs.environment }} with version ${{ github.event.inputs.release_version }}"
